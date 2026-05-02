@@ -1,0 +1,73 @@
+version: "1.0.0"
+nodes:
+  - id: imports
+    name: "Rewrite import paths"
+    steps:
+      - name: "Migrate @ethersproject/* imports to ethers"
+        js-ast-grep:
+          js_file: scripts/01-imports.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: namespace
+    name: "Flatten namespaces"
+    steps:
+      - name: "Flatten ethers.providers/utils/constants namespaces"
+        js-ast-grep:
+          js_file: scripts/02-namespaces.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: bignumber
+    name: "Migrate BigNumber to bigint"
+    steps:
+      - name: "Convert BigNumber usage to native bigint"
+        js-ast-grep:
+          js_file: scripts/03-bignumber.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: contracts
+    name: "Migrate contract patterns"
+    steps:
+      - name: "Convert callStatic/estimateGas/populateTransaction patterns"
+        js-ast-grep:
+          js_file: scripts/04-contracts.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: providers
+    name: "Migrate provider and signer APIs"
+    steps:
+      - name: "Rename provider/signer classes and update methods"
+        js-ast-grep:
+          js_file: scripts/05-providers.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: utilities
+    name: "Migrate utility functions"
+    steps:
+      - name: "Rename utility functions"
+        js-ast-grep:
+          js_file: scripts/06-utilities.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: constants
+    name: "Migrate constants"
+    steps:
+      - name: "Replace ethers.constants.X with new equivalents"
+        js-ast-grep:
+          js_file: scripts/07-constants.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
+
+  - id: signatures
+    name: "Migrate signature and transaction helpers"
+    steps:
+      - name: "Replace splitSignature/joinSignature/parseTransaction/serializeTransaction"
+        js-ast-grep:
+          js_file: scripts/08-signatures.ts
+          language: typescript
+          include: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
