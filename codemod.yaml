@@ -1,4 +1,4 @@
-schema_version: "1.0.0"
+schema_version: "1.0"
 name: ethers-v5-to-v6
 version: 1.0.0
 description: "Automated migration from ethers.js v5 to v6. Covers 80%+ of deterministic changes: import paths, namespace flattening, BigNumber→bigint, contract patterns, provider/signer renames, and utility function updates."
