@@ -1,5 +1,5 @@
 schema_version: "1.0"
-name: "@gaibianshiji/ethers-v6-migration"
+name: "ethersjs-v5-to-v6-migration"
 version: 1.0.0
 description: "Automated migration from ethers.js v5 to v6. Covers 80%+ of deterministic changes: import paths, namespace flattening, BigNumber→bigint, contract patterns, provider/signer renames, and utility function updates."
 author: "boringAI"
